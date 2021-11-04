@@ -20,7 +20,7 @@ public class AutoIndexCommand extends CommandGroup {
 
     public AutoIndexCommand(RobotContainer robotContainer) {
         this.addCommands(
-            new WaitUntilCommand(() -> robotContainer.conveyor.indexerHasBall()).deadlineWith(new IndexerCycleCommand(robotContainer.indexer).repeatedly()),
+            new WaitUntilCommand(() -> robotContainer.conveyor.indexerHasBall()).deadlineWith(new IndexerCycleCommand(robotContainer.indexer).perpetually()),
             new WaitCommand(0.1),
             robotContainer.conveyor.set(0.75).withInterrupt(() -> {
                 boolean hadBall = this.hasBall;
@@ -53,6 +53,6 @@ public class AutoIndexCommand extends CommandGroup {
     }
 
     public ParallelRaceGroup untilHas(int balls) {
-        return this.repeatedly().withInterrupt(() -> this.balls == 5);
+        return this.perpetually().withInterrupt(() -> this.balls == 5);
     }
 }
