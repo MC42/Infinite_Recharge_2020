@@ -112,6 +112,8 @@ public class RobotContainer {
 
         this.operator.y.toggleWhenPressed(new ShooterShootCommand(this.shooter));
 
+        this.operator.b.toggleWhenPressed(new TurretFollowCommand(this.turret, this.limelight));
+
         new ConfigurableDouble("Feed Speed", sp -> this.speedValue = sp, 1);
 
         this.operator.dPad.down.whenPressed(() -> this.limelight.enable());
